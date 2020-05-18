@@ -1,29 +1,24 @@
 using System;
+using System.Collections.Generic;
 
 namespace ep1.Models
 {
     public class Research
     {
-        public int CoodX { get; set; }
-        public int CoodY { get; set; }
-        public int PeopleId { get; set; }
+        public string CoodX { get; set; }
+        public string CoodY { get; set; }
+        public HashSet<ulong> Users { get; set; }
 
         public override bool Equals(object obj)
         {
             return obj is Research place &&
-                CoodX == place.CoodX &&
-                CoodY == place.CoodY &&
-                PeopleId == place.PeopleId;
+                CoodX.Equals(place.CoodX) &&
+                CoodY.Equals(place.CoodY);
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(CoodX, CoodY, PeopleId);
-        }
-
-        public bool IsValid(int value)
-        {
-            return value != 0;
+            return HashCode.Combine(CoodX, CoodY);
         }
     }
 }
